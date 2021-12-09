@@ -1,5 +1,18 @@
+
+terraform {
+  backend "remote" {
+    organization = "RabbitHole-GG"
+
+    workspaces {
+      name = "rabbithole-ceramic-node-mainnet"
+    }
+  }
+}
+
 provider "aws" {
-  region = var.aws_region
+  region     = var.aws_region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 provider "cloudflare" {
@@ -11,11 +24,11 @@ provider "docker" {
 }
 
 module "ceramic_ecs" {
-  source = "../../modules/ecs"
+  source = "./../../modules/ecs"
 
   count = var.deployments
 
-  acm_certificate_arn            = data.aws_acm_certificate._3boxlabs_com.arn
+  acm_certificate_arn            = data.aws_acm_certificate._rabbithole_gg.arn
   aws_region                     = var.aws_region
   base_namespace                 = "${var.cohort}-${count.index + 1}"
   ceramic_anchor_service_api_url = var.ceramic_anchor_service_api_url
@@ -33,7 +46,8 @@ module "ceramic_ecs" {
   image_tag                      = var.image_tag
   ipfs_cpu                       = var.ipfs_cpu
   ipfs_debug_env_var             = var.ipfs_debug_env_var
-  ipfs_domain_name               = var.domain_name
+  ipfs_domain_name               = var.ipfs_domain_name
+  domain_name                    = var.domain_name
   ipfs_memory                    = var.ipfs_memory
   ipfs_task_count                = var.ipfs_task_count
   private_subnet_ids             = data.aws_subnet_ids.private.ids
@@ -44,7 +58,7 @@ module "ceramic_ecs" {
   vpc_security_group_id          = var.vpc_security_group_id
 }
 
-data "aws_acm_certificate" "_3boxlabs_com" {
+data "aws_acm_certificate" "_rabbithole_gg" {
   domain      = "*.${var.domain_name}"
   most_recent = true
 }

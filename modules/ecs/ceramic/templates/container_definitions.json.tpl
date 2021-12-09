@@ -4,6 +4,7 @@
         "image": "${ceramic_image}",
         "cpu": ${cpu},
         "memory": ${memory},
+        "readonlyRootFilesystem": false,
         "ulimits": [
             {
                 "name": "nofile",
@@ -13,16 +14,15 @@
         ],
         "mountPoints": [
             {
+                "readOnly": false,
                 "sourceVolume": "${logs_volume_source}",
                 "containerPath": "/usr/local/var/log"
             }
         ],
         "command": [
-            "--port", "${ceramic_port}",
             "--hostname",  "0.0.0.0",
             "--network", "${ceramic_network}",
-            "--ipfs-api", "${ipfs_api_url}",
-            "--anchor-service-api", "${anchor_service_api_url}",
+            "--ipfs-api", "https://${ipfs_domain_name}:5011",
             "--debug", "${debug}",
             "--log-to-files", "true",
             "--log-directory", "/usr/local/var/log/${directory_namespace}",

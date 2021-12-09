@@ -1,5 +1,20 @@
 /***** Common *****/
 
+variable "cloudflare_api_token" {
+  type = string
+}
+
+variable "aws_account" {
+  type = string
+}
+variable "aws_access_key" {
+  type = string
+}
+
+variable "aws_secret_key" {
+  type = string
+}
+
 variable "aws_region" {
   type        = string
   description = "AWS region. Must match region of vpc_id and public_subnet_ids."
@@ -23,11 +38,15 @@ variable "cohort" {
 variable "default_tags" {
   type        = map(any)
   description = "Tags"
+  default = {
+    mainnet = true
+  }
 }
 
 variable "deployments" {
   type        = number
   description = "Number of deployments of the module"
+  default     = 1
 }
 
 variable "domain_name" {
@@ -90,7 +109,7 @@ variable "vpc_security_group_id" {
   description = "VPC security group id"
 }
 
-/***** Ceramic *****/
+# **** Ceramic ****
 
 variable "ceramic_anchor_service_api_url" {
   type        = string
@@ -105,16 +124,14 @@ variable "ceramic_cors_allowed_origins" {
 variable "ceramic_cpu" {
   type        = number
   description = "vCPU units to allocate to the Ceramic daemon ECS task"
-  default     = 1024 # 1024 = 1 vCPU
 }
 
 variable "ceramic_env" {
   type        = string
   description = "Optional. Environment namespace for Ceramic"
-  default     = ""
 }
 
-variable "ceramic_eth_rpc_url" {
+variable "eth_rpc_url" {
   type        = string
   description = "Ethereum RPC URL. Must match anchor service ETH network"
 }
@@ -132,7 +149,6 @@ variable "ceramic_efs_logs_fs_name" {
 variable "ceramic_memory" {
   type        = number
   description = "Memory allocation per Ceramic daemon ECS task"
-  default     = 2048 # 2048 = 2 GB
 }
 
 variable "ceramic_network" {
@@ -143,21 +159,17 @@ variable "ceramic_network" {
 variable "ceramic_task_count" {
   type        = number
   description = "Number of Ceramic ECS tasks to run in the ECS service"
-  default     = 1
 }
-
-/***** IPFS *****/
 
 variable "ipfs_ceramic_network" {
   type        = string
   description = "Ceramic network to pass to IPFS"
-  default     = ""
+  default     = "mainnet"
 }
 
 variable "ipfs_cpu" {
   type        = number
   description = "vCPU units to allocate to the IPFS ECS task"
-  default     = 1024 # 1024 = 1 vCPU
 }
 
 variable "ipfs_debug_env_var" {
@@ -165,14 +177,17 @@ variable "ipfs_debug_env_var" {
   description = "Value of DEBUG env var"
 }
 
+variable "ipfs_domain_name" {
+  type        = string
+  description = "Domain name, including TLD"
+}
+
 variable "ipfs_memory" {
   type        = number
   description = "Memory allocation per IPFS API instance"
-  default     = 8192
 }
 
 variable "ipfs_task_count" {
   type        = number
   description = "Number of IPFS ECS tasks to run in the ECS service"
-  default     = 1
 }

@@ -166,3 +166,13 @@ variable "image_tag" {
   type        = string
   description = "Image tag"
 }
+
+variable "ipfs_domain_name" {
+  type        = string
+  description = "Domain name, including TLD"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name, including TLD"
+}

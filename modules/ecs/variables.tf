@@ -120,7 +120,7 @@ variable "ceramic_task_count" {
 variable "ipfs_ceramic_network" {
   type        = string
   description = "Ceramic network passed to IPFS. Must match `ceramic_network` or be an empty string."
-  default     = ""
+  default     = "mainnet"
 }
 
 variable "ipfs_cpu" {
@@ -132,10 +132,15 @@ variable "ipfs_cpu" {
 variable "ipfs_debug_env_var" {
   type        = string
   description = "Value of DEBUG env var"
-  default     = "*error"
+  default     = "error"
 }
 
 variable "ipfs_domain_name" {
+  type        = string
+  description = "Domain name, including TLD"
+}
+
+variable "domain_name" {
   type        = string
   description = "Domain name, including TLD"
 }

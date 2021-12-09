@@ -195,7 +195,7 @@ module "alb_internal" {
       backend_port     = local.api_port
       target_type      = "ip"
       health_check = {
-        interval            = 30
+        interval            = 60
         path                = "/"
         port                = local.healthcheck_port
         matcher             = "200"
@@ -209,7 +209,7 @@ module "alb_internal" {
       backend_port     = local.gateway_port
       target_type      = "ip"
       health_check = {
-        interval            = 30
+        interval            = 60
         path                = "/"
         port                = local.healthcheck_port
         matcher             = "200"

@@ -1,12 +1,15 @@
 resource "aws_ecs_service" "main" {
-  platform_version = "1.4.0"
-  name             = var.ecs_service_name
-  cluster          = var.ecs_cluster_name
-  task_definition  = aws_ecs_task_definition.main.arn
-  desired_count    = var.ecs_count
-  launch_type      = "FARGATE"
+  platform_version                  = "1.4.0"
+  name                              = var.ecs_service_name
+  enable_execute_command            = true
+  health_check_grace_period_seconds = 700
+  cluster                           = var.ecs_cluster_name
+  task_definition                   = aws_ecs_task_definition.main.arn
+  desired_count                     = var.ecs_count
+  launch_type                       = "FARGATE"
 
   network_configuration {
+    assign_public_ip = true
     security_groups = [
       aws_security_group.alb_external.id,
       aws_security_group.alb_internal.id,
@@ -48,6 +51,8 @@ resource "aws_ecs_task_definition" "main" {
       log_stream_prefix = var.ecs_log_prefix
       memory            = var.ecs_memory
       region            = var.aws_region
+      domain            = var.domain_name
+      domain_name       = var.domain_name
 
       ceramic_network     = var.ceramic_network
       directory_namespace = var.directory_namespace

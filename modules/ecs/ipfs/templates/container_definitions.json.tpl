@@ -4,6 +4,7 @@
         "image": "${image}",
         "cpu": ${cpu},
         "memory": ${memory},
+        "readonlyRootFilesystem": false,
         "portMappings": [
             {
                 "containerPort": ${api_port}

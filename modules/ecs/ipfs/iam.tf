@@ -46,6 +46,7 @@ module "ecs_ipfs_task_role" {
   role_requires_mfa = false
 
   custom_role_policy_arns = [
+    "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
     "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
     aws_iam_policy.main.arn
   ]
@@ -68,7 +69,7 @@ module "ecs_task_execution_role" {
 
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
-    "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+    "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
   ]
 
   tags = local.default_tags

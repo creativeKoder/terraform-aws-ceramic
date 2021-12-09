@@ -6,7 +6,7 @@ This is still a work-in-progress.
 
 ```
 module "ceramic_ecs" {
-  source  = "ceramicnetwork/ceramic/aws//modules/ecs"
+  source  = "ceramicnetwork/ceramic/aws/modules/ecs"
   version = "0.0.1"
   # insert variables here
 }
