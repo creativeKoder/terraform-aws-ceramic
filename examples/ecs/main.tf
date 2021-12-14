@@ -4,7 +4,7 @@ terraform {
     organization = "RabbitHole-GG"
 
     workspaces {
-      name = var.workspace
+      name = "rabbithole-ceramic-node-mainnet"
     }
   }
 }
