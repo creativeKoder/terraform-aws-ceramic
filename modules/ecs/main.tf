@@ -19,9 +19,7 @@ module "ceramic" {
   env                    = var.env
   eth_rpc_url            = var.ceramic_eth_rpc_url
   image_tag              = var.image_tag
-  ipfs_domain_name       = var.ipfs_domain_name
-  ipfs_api_url           = "https://${var.ipfs_domain_name}" #module.ipfs.api_url_internal
-  domain_name            = var.domain_name
+  ipfs_api_url           = var.ipfs_api_url #module.ipfs.api_url_internal
   namespace              = "${local.namespace}-node"
   private_subnet_ids     = var.private_subnet_ids
   public_subnet_ids      = var.public_subnet_ids
@@ -43,15 +41,13 @@ module "ipfs" {
   debug                   = var.ipfs_debug_env_var
   dht_server_mode         = true
   directory_namespace     = local.namespace
-  domain                  = var.domain_name
-  domain_name             = var.domain_name
+  domain                  = var.ipfs_domain_name #"ipfs.rabbithole.gg"
   ecs_cluster_name        = var.ecs_cluster_name
   ecs_service_name        = "${local.namespace}-ipfs-nd"
   ecs_count               = var.ipfs_task_count
   ecs_cpu                 = var.ipfs_cpu
   ecs_log_group_name      = aws_cloudwatch_log_group.ceramic.name
   ecs_memory              = var.ipfs_memory
-  ipfs_domain_name        = var.ipfs_domain_name
   enable_external_api     = true
   enable_internal_api     = true
   enable_external_gateway = false

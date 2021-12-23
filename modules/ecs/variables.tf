@@ -140,11 +140,6 @@ variable "ipfs_domain_name" {
   description = "Domain name, including TLD"
 }
 
-variable "domain_name" {
-  type        = string
-  description = "Domain name, including TLD"
-}
-
 variable "ipfs_memory" {
   type        = number
   description = "Memory allocation per IPFS API instance"
@@ -155,4 +150,9 @@ variable "ipfs_task_count" {
   type        = number
   description = "Number of IPFS ECS tasks to run in the ECS service"
   default     = 1
+}
+
+variable "ipfs_api_url" {
+  type        = string
+  description = "API URL for IPFS"
 }

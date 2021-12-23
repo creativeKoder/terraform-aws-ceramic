@@ -51,8 +51,6 @@ resource "aws_ecs_task_definition" "main" {
       log_stream_prefix = var.ecs_log_prefix
       memory            = var.ecs_memory
       region            = var.aws_region
-      domain            = var.domain_name
-      domain_name       = var.domain_name
 
       ceramic_network     = var.ceramic_network
       directory_namespace = var.directory_namespace

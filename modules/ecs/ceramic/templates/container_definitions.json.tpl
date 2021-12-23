@@ -22,7 +22,7 @@
         "command": [
             "--hostname",  "0.0.0.0",
             "--network", "${ceramic_network}",
-            "--ipfs-api", "https://${ipfs_domain_name}:5011",
+            "--ipfs-api", "${ipfs_api_url}:5011",
             "--debug", "${debug}",
             "--log-to-files", "true",
             "--log-directory", "/usr/local/var/log/${directory_namespace}",

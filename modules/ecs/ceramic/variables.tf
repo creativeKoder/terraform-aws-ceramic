@@ -172,13 +172,5 @@ variable "vpc_cidr_block" {
   description = "Default CIDR block of the VPC"
 }
 
-variable "ipfs_domain_name" {
-  type        = string
-  description = "The IPFS public domain name"
-}
 
-variable "domain_name" {
-  type        = string
-  description = "The IPFS public domain name"
-}
 /* Chosen */

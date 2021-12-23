@@ -177,11 +177,6 @@ variable "ipfs_debug_env_var" {
   description = "Value of DEBUG env var"
 }
 
-variable "ipfs_domain_name" {
-  type        = string
-  description = "Domain name, including TLD"
-}
-
 variable "ipfs_memory" {
   type        = number
   description = "Memory allocation per IPFS API instance"
@@ -190,4 +185,12 @@ variable "ipfs_memory" {
 variable "ipfs_task_count" {
   type        = number
   description = "Number of IPFS ECS tasks to run in the ECS service"
+}
+
+variable "ipfs_api_url" {
+  type = string
+}
+
+variable "ipfs_domain_name" {
+  type = string
 }
