@@ -23,7 +23,6 @@
             "--hostname",  "0.0.0.0",
             "--network", "${ceramic_network}",
             "--ipfs-api", "${ipfs_api_url}",
-            "--anchor-service-api", "${anchor_service_api_url}",
             "--debug", "${debug}",
             "--log-to-files", "true",
             "--log-directory", "/usr/local/var/log/${directory_namespace}",

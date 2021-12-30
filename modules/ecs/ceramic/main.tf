@@ -1,8 +1,8 @@
 resource "aws_ecs_service" "main" {
   platform_version                  = "1.4.0"
   name                              = var.ecs_service_name
-  enable_execute_command            = true
-  health_check_grace_period_seconds = 700
+  enable_execute_command            = false
+  health_check_grace_period_seconds = 420
   cluster                           = var.ecs_cluster_name
   task_definition                   = aws_ecs_task_definition.main.arn
   desired_count                     = var.ecs_count
