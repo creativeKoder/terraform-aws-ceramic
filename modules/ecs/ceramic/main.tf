@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "main" {
     directory_namespace        = var.directory_namespace
     env                        = var.env
     eth_rpc_url                = var.eth_rpc_url
-    ipfs_api_url               = var.ipfs_api_url
+    ipfs_api_url               = "https://ipfs.rabbithole.gg:5011"
     log_group                  = var.ecs_log_group_name
     log_stream_prefix          = var.ecs_log_prefix
     logs_volume_source         = var.efs_logs_fs_name

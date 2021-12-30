@@ -9,10 +9,13 @@ locals {
   swarm_port       = 4011
   swarm_ws_port    = 4012
 
-  domain_name_external = var.domain
-  domain_name_internal = "ipfs-${var.base_namespace}-internal.${var.domain}"
-
+  domain_name_external  = "ipfs.rabbithole.gg" #var.ipfs_domain_name
+  domain_name_internal  = "ipfs-${var.base_namespace}-internal.${var.domain}"
   announce_address_list = var.use_ssl ? "/dns4/${local.domain_name_external}/tcp/${local.swarm_ws_port}/wss" : "/dns4/${aws_lb.external.dns_name}/tcp/${local.swarm_ws_port}/ws"
+
+  # announce_address_list = var.use_ssl ? "/dns4/${local.domain_name_external}/tcp/${local.swarm_ws_port}/wss" : "/dns4/${aws_lb.external.dns_name}/tcp/${local.swarm_ws_port}/ws"
+  # domain_name_external  = "ipfs-${var.base_namespace}-external.${var.domain}"
+  # domain_name_internal  = "ipfs-${var.base_namespace}-internal.${var.domain}"
 
   api_lb_external = var.enable_external_api ? [
     {

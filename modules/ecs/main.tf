@@ -19,7 +19,7 @@ module "ceramic" {
   env                    = var.env
   eth_rpc_url            = var.ceramic_eth_rpc_url
   image_tag              = var.image_tag
-  ipfs_api_url           = var.ipfs_api_url #module.ipfs.api_url_internal
+  ipfs_api_url           = "https://${var.ipfs_domain_name}"
   namespace              = "${local.namespace}-node"
   private_subnet_ids     = var.private_subnet_ids
   public_subnet_ids      = var.public_subnet_ids
@@ -41,7 +41,7 @@ module "ipfs" {
   debug                   = var.ipfs_debug_env_var
   dht_server_mode         = true
   directory_namespace     = local.namespace
-  domain                  = var.ipfs_domain_name #"ipfs.rabbithole.gg"
+  domain                  = var.ipfs_domain_name
   ecs_cluster_name        = var.ecs_cluster_name
   ecs_service_name        = "${local.namespace}-ipfs-nd"
   ecs_count               = var.ipfs_task_count
