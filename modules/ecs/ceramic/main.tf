@@ -2,14 +2,14 @@ resource "aws_ecs_service" "main" {
   platform_version                  = "1.4.0"
   name                              = var.ecs_service_name
   enable_execute_command            = false
-  health_check_grace_period_seconds = 420
+  health_check_grace_period_seconds = 720
   cluster                           = var.ecs_cluster_name
   task_definition                   = aws_ecs_task_definition.main.arn
   desired_count                     = var.ecs_count
   launch_type                       = "FARGATE"
 
   network_configuration {
-    assign_public_ip = true
+    # assign_public_ip = true
     security_groups = [
       var.vpc_security_group_id,
       aws_security_group.efs.id,
@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "main" {
     directory_namespace        = var.directory_namespace
     env                        = var.env
     eth_rpc_url                = var.eth_rpc_url
-    ipfs_api_url               = "https://ipfs.rabbithole.gg:5011"
+    ipfs_api_url               = var.ipfs_api_url #"https://ipfs.rabbithole.gg:5011"
     log_group                  = var.ecs_log_group_name
     log_stream_prefix          = var.ecs_log_prefix
     logs_volume_source         = var.efs_logs_fs_name

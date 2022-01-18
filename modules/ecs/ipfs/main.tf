@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "main" {
   platform_version                  = "1.4.0"
   name                              = var.ecs_service_name
-  enable_execute_command            = true
+  enable_execute_command            = false
   health_check_grace_period_seconds = 700
   cluster                           = var.ecs_cluster_name
   task_definition                   = aws_ecs_task_definition.main.arn
@@ -9,7 +9,7 @@ resource "aws_ecs_service" "main" {
   launch_type                       = "FARGATE"
 
   network_configuration {
-    assign_public_ip = true
+    # assign_public_ip = true
     security_groups = [
       aws_security_group.alb_external.id,
       aws_security_group.alb_internal.id,

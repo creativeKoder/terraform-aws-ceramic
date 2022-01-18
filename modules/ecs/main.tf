@@ -19,7 +19,7 @@ module "ceramic" {
   env                    = var.env
   eth_rpc_url            = var.ceramic_eth_rpc_url
   image_tag              = var.image_tag
-  ipfs_api_url           = "https://${var.ipfs_domain_name}"
+  ipfs_api_url           = var.ipfs_api_url #module.ipfs.api_url_internal
   namespace              = "${local.namespace}-node"
   private_subnet_ids     = var.private_subnet_ids
   public_subnet_ids      = var.public_subnet_ids
